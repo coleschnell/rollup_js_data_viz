@@ -7934,218 +7934,136 @@
     }
 
     var data = [ { report_date:"2013-12-31",
-        "Independent Bank":"677393000.0",
-        "The Bank of Fayette County":"281418000.0",
-        "Financial Federal Bank":"220690000.0",
-        "Evolve Bank & Trust":"197129000.0" },
+        "First Horizon":"16825762000.0",
+        "Rest of Memphis":"5365304000.0" },
       { report_date:"2014-03-31",
-        "Independent Bank":"709680000.0",
-        "The Bank of Fayette County":"283011000.0",
-        "Financial Federal Bank":"221092000.0",
-        "Evolve Bank & Trust":"201495000.0" },
+        "First Horizon":"16766338000.0",
+        "Rest of Memphis":"5311155000.0" },
       { report_date:"2014-06-30",
-        "Independent Bank":"733815000.0",
-        "The Bank of Fayette County":"300561000.0",
-        "Financial Federal Bank":"241710000.0",
-        "Evolve Bank & Trust":"250134000.0" },
+        "First Horizon":"16225213000.0",
+        "Rest of Memphis":"5467386000.0" },
       { report_date:"2014-09-30",
-        "Independent Bank":"701932000.0",
-        "The Bank of Fayette County":"282976000.0",
-        "Financial Federal Bank":"251867000.0",
-        "Evolve Bank & Trust":"300312000.0" },
+        "First Horizon":"16259564000.0",
+        "Rest of Memphis":"5535187000.0" },
       { report_date:"2014-12-31",
-        "Independent Bank":"740307000.0",
-        "The Bank of Fayette County":"276867000.0",
-        "Financial Federal Bank":"248066000.0",
-        "Evolve Bank & Trust":"273703000.0" },
+        "First Horizon":"18246167000.0",
+        "Rest of Memphis":"5612245000.0" },
       { report_date:"2015-03-31",
-        "Independent Bank":"746048000.0",
-        "The Bank of Fayette County":"284334000.0",
-        "Financial Federal Bank":"254769000.0",
-        "Evolve Bank & Trust":"267381000.0" },
+        "First Horizon":"18796774000.0",
+        "Rest of Memphis":"5651285000.0" },
       { report_date:"2015-06-30",
-        "Independent Bank":"767240000.0",
-        "The Bank of Fayette County":"306722000.0",
-        "Financial Federal Bank":"280566000.0",
-        "Evolve Bank & Trust":"260151000.0" },
+        "First Horizon":"18792777000.0",
+        "Rest of Memphis":"5667139000.0" },
       { report_date:"2015-09-30",
-        "Independent Bank":"791023000.0",
-        "The Bank of Fayette County":"306445000.0",
-        "Financial Federal Bank":"267360000.0",
-        "Evolve Bank & Trust":"279919000.0" },
+        "First Horizon":"19097192000.0",
+        "Rest of Memphis":"5282527000.0" },
       { report_date:"2015-12-31",
-        "Independent Bank":"827208000.0",
-        "The Bank of Fayette County":"308240000.0",
-        "Financial Federal Bank":"296795000.0",
-        "Evolve Bank & Trust":"266707000.0" },
+        "First Horizon":"20123820000.0",
+        "Rest of Memphis":"5370318000.0" },
       { report_date:"2016-03-31",
-        "Independent Bank":"825881000.0",
-        "The Bank of Fayette County":"328499000.0",
-        "Financial Federal Bank":"311695000.0",
-        "Evolve Bank & Trust":"270930000.0" },
+        "First Horizon":"20453547000.0",
+        "Rest of Memphis":"5495752000.0" },
       { report_date:"2016-06-30",
-        "Independent Bank":"846396000.0",
-        "The Bank of Fayette County":"383539000.0",
-        "Financial Federal Bank":"347219000.0",
-        "Evolve Bank & Trust":"267949000.0" },
+        "First Horizon":"20848250000.0",
+        "Rest of Memphis":"5613202000.0" },
       { report_date:"2016-09-30",
-        "Independent Bank":"888434000.0",
-        "The Bank of Fayette County":"373691000.0",
-        "Financial Federal Bank":"336667000.0",
-        "Evolve Bank & Trust":"300017000.0" },
+        "First Horizon":"21812124000.0",
+        "Rest of Memphis":"5697770000.0" },
       { report_date:"2016-12-31",
-        "Independent Bank":"878414000.0",
-        "The Bank of Fayette County":"385886000.0",
-        "Financial Federal Bank":"349087000.0",
-        "Evolve Bank & Trust":"315048000.0" },
+        "First Horizon":"22911760000.0",
+        "Rest of Memphis":"5781948000.0" },
       { report_date:"2017-03-31",
-        "Independent Bank":"855259000.0",
-        "The Bank of Fayette County":"394452000.0",
-        "Financial Federal Bank":"347066000.0",
-        "Evolve Bank & Trust":"318552000.0" },
+        "First Horizon":"23733779000.0",
+        "Rest of Memphis":"5914952000.0" },
       { report_date:"2017-06-30",
-        "Independent Bank":"837935000.0",
-        "The Bank of Fayette County":"433553000.0",
-        "Financial Federal Bank":"353185000.0",
-        "Evolve Bank & Trust":"357341000.0" },
+        "First Horizon":"22621047000.0",
+        "Rest of Memphis":"6053042000.0" },
       { report_date:"2017-09-30",
-        "Independent Bank":"844453000.0",
-        "The Bank of Fayette County":"441832000.0",
-        "Financial Federal Bank":"352424000.0",
-        "Evolve Bank & Trust":"360441000.0" },
+        "First Horizon":"22454816000.0",
+        "Rest of Memphis":"6062672000.0" },
       { report_date:"2017-12-31",
-        "Independent Bank":"850246000.0",
-        "The Bank of Fayette County":"452160000.0",
-        "Financial Federal Bank":"375562000.0",
-        "Evolve Bank & Trust":"368649000.0" },
+        "First Horizon":"30888030000.0",
+        "Rest of Memphis":"6330790000.0" },
       { report_date:"2018-03-31",
-        "Independent Bank":"813374000.0",
-        "The Bank of Fayette County":"468637000.0",
-        "Financial Federal Bank":"381959000.0",
-        "Evolve Bank & Trust":"359699000.0" },
+        "First Horizon":"31048801000.0",
+        "Rest of Memphis":"6231781000.0" },
       { report_date:"2018-06-30",
-        "Independent Bank":"854963000.0",
-        "The Bank of Fayette County":"483478000.0",
-        "Financial Federal Bank":"380369000.0",
-        "Evolve Bank & Trust":"369538000.0" },
+        "First Horizon":"31223872000.0",
+        "Rest of Memphis":"6419927000.0" },
       { report_date:"2018-09-30",
-        "Independent Bank":"828594000.0",
-        "The Bank of Fayette County":"498957000.0",
-        "Financial Federal Bank":"416819000.0",
-        "Evolve Bank & Trust":"385845000.0" },
+        "First Horizon":"31321355000.0",
+        "Rest of Memphis":"6499025000.0" },
       { report_date:"2018-12-31",
-        "Independent Bank":"892443000.0",
-        "The Bank of Fayette County":"526007000.0",
-        "Financial Federal Bank":"443672000.0",
-        "Evolve Bank & Trust":"383824000.0" },
+        "First Horizon":"33026812000.0",
+        "Rest of Memphis":"6566128000.0" },
       { report_date:"2019-03-31",
-        "Independent Bank":"879622000.0",
-        "The Bank of Fayette County":"554170000.0",
-        "Financial Federal Bank":"458992000.0",
-        "Evolve Bank & Trust":"399546000.0" },
+        "First Horizon":"32840741000.0",
+        "Rest of Memphis":"6737617000.0" },
       { report_date:"2019-06-30",
-        "Independent Bank":"872743000.0",
-        "The Bank of Fayette County":"576363000.0",
-        "Financial Federal Bank":"467013000.0",
-        "Evolve Bank & Trust":"421764000.0" },
+        "First Horizon":"32691442000.0",
+        "Rest of Memphis":"6807355000.0" },
       { report_date:"2019-09-30",
-        "Independent Bank":"886992000.0",
-        "The Bank of Fayette County":"567356000.0",
-        "Financial Federal Bank":"480677000.0",
-        "Evolve Bank & Trust":"434050000.0" },
+        "First Horizon":"32305295000.0",
+        "Rest of Memphis":"6962909000.0" },
       { report_date:"2019-12-31",
-        "Independent Bank":"915613000.0",
-        "The Bank of Fayette County":"579978000.0",
-        "Financial Federal Bank":"476287000.0",
-        "Evolve Bank & Trust":"373643000.0" },
+        "First Horizon":"32810374000.0",
+        "Rest of Memphis":"6879245000.0" },
       { report_date:"2020-03-31",
-        "Independent Bank":"902906000.0",
-        "The Bank of Fayette County":"591346000.0",
-        "Financial Federal Bank":"511765000.0",
-        "Evolve Bank & Trust":"372671000.0" },
+        "First Horizon":"34812821000.0",
+        "Rest of Memphis":"6987178000.0" },
       { report_date:"2020-06-30",
-        "Independent Bank":"1017484000.0",
-        "The Bank of Fayette County":"634744000.0",
-        "Financial Federal Bank":"526520000.0",
-        "Evolve Bank & Trust":"405827000.0" },
+        "First Horizon":"39025284000.0",
+        "Rest of Memphis":"7559299000.0" },
       { report_date:"2020-09-30",
-        "Independent Bank":"1025308000.0",
-        "The Bank of Fayette County":"654604000.0",
-        "Financial Federal Bank":"561567000.0",
-        "Evolve Bank & Trust":"453767000.0" },
+        "First Horizon":"69855940000.0",
+        "Rest of Memphis":"7714627000.0" },
       { report_date:"2020-12-31",
-        "Independent Bank":"1059258000.0",
-        "The Bank of Fayette County":"643372000.0",
-        "Financial Federal Bank":"611598000.0",
-        "Evolve Bank & Trust":"514782000.0" },
+        "First Horizon":"70844676000.0",
+        "Rest of Memphis":"7832812000.0" },
       { report_date:"2021-03-31",
-        "Independent Bank":"1042137000.0",
-        "The Bank of Fayette County":"649132000.0",
-        "Financial Federal Bank":"631668000.0",
-        "Evolve Bank & Trust":"497530000.0" },
+        "First Horizon":"74045809000.0",
+        "Rest of Memphis":"8038617000.0" },
       { report_date:"2021-06-30",
-        "Independent Bank":"1045611000.0",
-        "The Bank of Fayette County":"643553000.0",
-        "Financial Federal Bank":"649965000.0",
-        "Evolve Bank & Trust":"508484000.0" },
+        "First Horizon":"74325850000.0",
+        "Rest of Memphis":"8079192000.0" },
       { report_date:"2021-09-30",
-        "Independent Bank":"1084230000.0",
-        "The Bank of Fayette County":"674850000.0",
-        "Financial Federal Bank":"632315000.0",
-        "Evolve Bank & Trust":"461865000.0" },
+        "First Horizon":"75051597000.0",
+        "Rest of Memphis":"8143009000.0" },
       { report_date:"2021-12-31",
-        "Independent Bank":"1137217000.0",
-        "The Bank of Fayette County":"726364000.0",
-        "Financial Federal Bank":"632117000.0",
-        "Evolve Bank & Trust":"639128000.0" },
+        "First Horizon":"75654122000.0",
+        "Rest of Memphis":"6656769000.0" },
       { report_date:"2022-03-31",
-        "Independent Bank":"1135330000.0",
-        "The Bank of Fayette County":"749545000.0",
-        "Financial Federal Bank":"645517000.0",
-        "Evolve Bank & Trust":"615653000.0" },
+        "First Horizon":"75460607000.0",
+        "Rest of Memphis":"6784331000.0" },
       { report_date:"2022-06-30",
-        "Independent Bank":"1082026000.0",
-        "The Bank of Fayette County":"753550000.0",
-        "Financial Federal Bank":"590691000.0",
-        "Evolve Bank & Trust":"1123686000.0" },
+        "First Horizon":"71877384000.0",
+        "Rest of Memphis":"7221144000.0" },
       { report_date:"2022-09-30",
-        "Independent Bank":"1074639000.0",
-        "The Bank of Fayette County":"735479000.0",
-        "Financial Federal Bank":"622602000.0",
-        "Evolve Bank & Trust":"1083838000.0" },
+        "First Horizon":"67355589000.0",
+        "Rest of Memphis":"7237468000.0" },
       { report_date:"2022-12-31",
-        "Independent Bank":"1111693000.0",
-        "The Bank of Fayette County":"753355000.0",
-        "Financial Federal Bank":"647691000.0",
-        "Evolve Bank & Trust":"1541644000.0" },
+        "First Horizon":"64839262000.0",
+        "Rest of Memphis":"7516435000.0" },
       { report_date:"2023-03-31",
-        "Independent Bank":"1104277000.0",
-        "The Bank of Fayette County":"749179000.0",
-        "Financial Federal Bank":"667524000.0",
-        "Evolve Bank & Trust":"1527794000.0" },
+        "First Horizon":"62813312000.0",
+        "Rest of Memphis":"7591079000.0" },
       { report_date:"2023-06-30",
-        "Independent Bank":"1137580000.0",
-        "The Bank of Fayette County":"735418000.0",
-        "Financial Federal Bank":"671702000.0",
-        "Evolve Bank & Trust":"1268100000.0" },
+        "First Horizon":"66592014000.0",
+        "Rest of Memphis":"7328985000.0" },
       { report_date:"2023-09-30",
-        "Independent Bank":"1173687000.0",
-        "The Bank of Fayette County":"733177000.0",
-        "Financial Federal Bank":"703483000.0",
-        "Evolve Bank & Trust":"1234830000.0" },
+        "First Horizon":"67983353000.0",
+        "Rest of Memphis":"7399170000.0" },
       { report_date:"2023-12-31",
-        "Independent Bank":"1248982000.0",
-        "The Bank of Fayette County":"749353000.0",
-        "Financial Federal Bank":"740525000.0",
-        "Evolve Bank & Trust":"989260000.0" } ];
+        "First Horizon":"66650287000.0",
+        "Rest of Memphis":"7335155000.0" } ];
 
-    /* src/routes/graphs/_each/MemphisBasedBanks.svelte generated by Svelte v3.59.2 */
+    /* src/routes/graphs/_each/FirstHorizon.svelte generated by Svelte v3.59.2 */
 
     function add_css(target) {
-    	append_styles(target, "svelte-4zhicv", ".chart-container.svelte-4zhicv.svelte-4zhicv{width:100%;height:300px;padding-top:10px}.svelte-4zhicv.svelte-4zhicv{font-family:'Graphik Web', 'Helvetica Neue', Helvetica, Arial, sans-serif}.footnotes.svelte-4zhicv.svelte-4zhicv{font-size:12.5px;color:#666;display:flex;width:calc(100% - 20px);flex-direction:column;justify-content:space-between;padding:10px 0px}.footnotes.svelte-4zhicv>div.svelte-4zhicv{line-height:15px}.chart-title.svelte-4zhicv.svelte-4zhicv{font-size:20px}");
+    	append_styles(target, "svelte-12zwt2s", ".chart-container.svelte-12zwt2s.svelte-12zwt2s{width:100%;height:300px}.svelte-12zwt2s.svelte-12zwt2s{font-family:Graphik Web,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.footnotes.svelte-12zwt2s.svelte-12zwt2s{font-size:12.5px;color:#666;display:flex;width:calc(100% - 20px);flex-direction:column;justify-content:space-between;padding:10px 0px}.footnotes.svelte-12zwt2s>div.svelte-12zwt2s{line-height:15px}.chart-title.svelte-12zwt2s.svelte-12zwt2s{font-size:20px}");
     }
 
-    // (142:2) {#if title !== 'null'}
+    // (135:2) {#if title !== 'null'}
     function create_if_block_2(ctx) {
     	let h3;
     	let h3_resize_listener;
@@ -8154,7 +8072,7 @@
     		c() {
     			h3 = element("h3");
     			h3.textContent = `${title}`;
-    			attr(h3, "class", "chart-title svelte-4zhicv");
+    			attr(h3, "class", "chart-title svelte-12zwt2s");
     			add_render_callback(() => /*h3_elementresize_handler*/ ctx[8].call(h3));
     		},
     		m(target, anchor) {
@@ -8169,7 +8087,7 @@
     	};
     }
 
-    // (156:4) <Svg>
+    // (149:4) <Svg>
     function create_default_slot_2(ctx) {
     	let recessionbars;
     	let t0;
@@ -8250,7 +8168,7 @@
     	};
     }
 
-    // (174:4) <Html>
+    // (167:4) <Html>
     function create_default_slot_1(ctx) {
     	let labels;
     	let t;
@@ -8298,7 +8216,7 @@
     	};
     }
 
-    // (145:2) <LayerCake     padding={{ top: 10, right: 210, bottom: 20, left: 45 }}     x={xKey}     y={yKey}     z={zKey}     yDomain={[0, null]}     zScale={scaleOrdinal()}     zRange={seriesColors}     flatData={flatten(groupedData, 'values')}     data={groupedData}   >
+    // (138:2) <LayerCake     padding={{ top: 20, right: 210, bottom: 20, left: 45 }}     x={xKey}     y={yKey}     z={zKey}     yDomain={[0, null]}     zScale={scaleOrdinal()}     zRange={seriesColors}     flatData={flatten(groupedData, 'values')}     data={groupedData}   >
     function create_default_slot(ctx) {
     	let svg;
     	let t;
@@ -8366,7 +8284,7 @@
     	};
     }
 
-    // (184:4) {#if source !== 'null'}
+    // (177:4) {#if source !== 'null'}
     function create_if_block_1(ctx) {
     	let div;
 
@@ -8374,7 +8292,7 @@
     		c() {
     			div = element("div");
     			div.textContent = `Source: ${source}`;
-    			attr(div, "class", "svelte-4zhicv");
+    			attr(div, "class", "svelte-12zwt2s");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -8386,7 +8304,7 @@
     	};
     }
 
-    // (187:4) {#if notes !== 'null'}
+    // (180:4) {#if notes !== 'null'}
     function create_if_block(ctx) {
     	let div;
 
@@ -8394,7 +8312,7 @@
     		c() {
     			div = element("div");
     			div.textContent = `Notes: ${notes}`;
-    			attr(div, "class", "svelte-4zhicv");
+    			attr(div, "class", "svelte-12zwt2s");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -8420,7 +8338,7 @@
     	layercake = new LayerCake({
     			props: {
     				padding: {
-    					top: 10,
+    					top: 20,
     					right: 210,
     					bottom: 20,
     					left: 45
@@ -8452,9 +8370,9 @@
     			if (if_block1) if_block1.c();
     			t2 = space();
     			if (if_block2) if_block2.c();
-    			attr(div0, "class", "footnotes svelte-4zhicv");
+    			attr(div0, "class", "footnotes svelte-12zwt2s");
     			add_render_callback(() => /*div0_elementresize_handler*/ ctx[9].call(div0));
-    			attr(div1, "class", "chart-container svelte-4zhicv");
+    			attr(div1, "class", "chart-container svelte-12zwt2s");
     			set_style(div1, "margin", /*margin*/ ctx[2].top + "px " + /*margin*/ ctx[2].right + "px " + (/*margin*/ ctx[2].bottom + /*footnote_height*/ ctx[0] + /*title_height*/ ctx[1]) + "px " + /*margin*/ ctx[2].left + "px");
     		},
     		m(target, anchor) {
@@ -8515,7 +8433,7 @@
     // const subhead = decodeURIComponent(q.get('subhead'))
     // const source = decodeURIComponent(q.get('source'))
     // const notes = decodeURIComponent(q.get('notes'))
-    const title = "Memphis-based community banks deposits";
+    const title = "First Horizon vs all other Memphis-based banks";
 
     const source = "FDIC";
     const notes = "Shaded area shows the Covid-19 recession";
@@ -8535,31 +8453,22 @@
     }
 
     function instance($$self, $$props, $$invalidate) {
-    	console.log(data);
     	let footnote_height = 0, title_height = 0;
     	const margin = { top: 0, right: 0, bottom: 0, left: 0 };
     	const xKeyCast = timeParse('%Y-%m-%d');
     	const seriesNames = Object.keys(data[0]).filter(d => d !== xKey);
 
-    	// const  seriesColors= ['#ffe4b8', '#ffb3c0', '#ff7ac7', '#ff00cc'];
-    	const seriesColors = [
-    		"#B29C58",
-    		"#1e4357",
-    		// "#16242c",  // --co-bizj-blue-900
-    		"#b9c9d5",
-    		"#D4C48A",
-    		// "#95aec1", // --co-bizj-blue-200
-    		"#7597ae",
-    		// "#517f9a", // --co-bizj-blue-400
-    		"#256788"
-    	]; // --co-bizj-blue-700
+    	// const seriesColors = ['#ffe4b8', '#ffb3c0', '#ff7ac7', '#ff00cc'];
+    	const seriesColors = ["#16242c", "#b9c9d5"]; // --co-bizj-blue-900
     	// --co-bizj-blue-100
-    	// --co-bizj-blue-300
-    	// --co-bizj-blue-500
+    	// "#95aec1", // --co-bizj-blue-200
+    	// "#7597ae", // --co-bizj-blue-300
+    	// "#517f9a", // --co-bizj-blue-400
+
+    	// "#256788", // --co-bizj-blue-500
     	// "#22546d", // --co-bizj-blue-600
     	// "#1e4357", // --co-bizj-blue-700
     	// "#1b3341", // --co-bizj-blue-800
-
     	/* --------------------------------------------
      * Cast values
      */
@@ -8604,7 +8513,7 @@
     	];
     }
 
-    class MemphisBasedBanks extends SvelteComponent {
+    class FirstHorizon extends SvelteComponent {
     	constructor(options) {
     		super();
     		init(this, options, instance, create_fragment, safe_not_equal, {}, add_css);
@@ -8615,7 +8524,7 @@
     var script = document.currentScript;
     script.parentNode.insertBefore(div, script);
 
-    new MemphisBasedBanks({
+    new FirstHorizon({
       target: div,
       props: {},
     });
