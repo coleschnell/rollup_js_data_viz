@@ -8194,7 +8194,7 @@
     	return {
     		c() {
     			h3 = element("h3");
-    			h3.textContent = `>${title}`;
+    			h3.textContent = `${title}`;
     			attr(h3, "class", "chart-title svelte-1w2mzwo");
     			add_render_callback(() => /*h3_elementresize_handler*/ ctx[8].call(h3));
     		},
@@ -8450,11 +8450,10 @@
     function create_fragment(ctx) {
     	let div1;
     	let t0;
-    	let t1;
     	let layercake;
-    	let t2;
+    	let t1;
     	let div0;
-    	let t3;
+    	let t2;
     	let div0_resize_listener;
     	let current;
     	let if_block0 = create_if_block_2(ctx);
@@ -8486,14 +8485,13 @@
     	return {
     		c() {
     			div1 = element("div");
-    			t0 = text(">\n  ");
     			if (if_block0) if_block0.c();
-    			t1 = space();
+    			t0 = space();
     			create_component(layercake.$$.fragment);
-    			t2 = space();
+    			t1 = space();
     			div0 = element("div");
     			if (if_block1) if_block1.c();
-    			t3 = space();
+    			t2 = space();
     			if (if_block2) if_block2.c();
     			attr(div0, "class", "footnotes svelte-1w2mzwo");
     			add_render_callback(() => /*div0_elementresize_handler*/ ctx[9].call(div0));
@@ -8502,14 +8500,13 @@
     		},
     		m(target, anchor) {
     			insert(target, div1, anchor);
-    			append(div1, t0);
     			if (if_block0) if_block0.m(div1, null);
-    			append(div1, t1);
+    			append(div1, t0);
     			mount_component(layercake, div1, null);
-    			append(div1, t2);
+    			append(div1, t1);
     			append(div1, div0);
     			if (if_block1) if_block1.m(div0, null);
-    			append(div0, t3);
+    			append(div0, t2);
     			if (if_block2) if_block2.m(div0, null);
     			div0_resize_listener = add_iframe_resize_listener(div0, /*div0_elementresize_handler*/ ctx[9].bind(div0));
     			current = true;
