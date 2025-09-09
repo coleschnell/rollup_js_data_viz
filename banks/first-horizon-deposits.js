@@ -8063,27 +8063,31 @@
     	append_styles(target, "svelte-12zwt2s", ".chart-container.svelte-12zwt2s.svelte-12zwt2s{width:100%;height:300px}.svelte-12zwt2s.svelte-12zwt2s{font-family:Graphik Web,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.footnotes.svelte-12zwt2s.svelte-12zwt2s{font-size:12.5px;color:#666;display:flex;width:calc(100% - 20px);flex-direction:column;justify-content:space-between;padding:10px 0px}.footnotes.svelte-12zwt2s>div.svelte-12zwt2s{line-height:15px}.chart-title.svelte-12zwt2s.svelte-12zwt2s{font-size:20px}");
     }
 
-    // (130:2) {#if title !== 'null'}
+    // (135:2) {#if title !== 'null'}
     function create_if_block_2(ctx) {
     	let h3;
+    	let h3_resize_listener;
 
     	return {
     		c() {
     			h3 = element("h3");
     			h3.textContent = `${title}`;
     			attr(h3, "class", "chart-title svelte-12zwt2s");
+    			add_render_callback(() => /*h3_elementresize_handler*/ ctx[8].call(h3));
     		},
     		m(target, anchor) {
     			insert(target, h3, anchor);
+    			h3_resize_listener = add_iframe_resize_listener(h3, /*h3_elementresize_handler*/ ctx[8].bind(h3));
     		},
     		p: noop,
     		d(detaching) {
     			if (detaching) detach(h3);
+    			h3_resize_listener();
     		}
     	};
     }
 
-    // (144:4) <Svg>
+    // (149:4) <Svg>
     function create_default_slot_2(ctx) {
     	let recessionbars;
     	let t0;
@@ -8098,8 +8102,8 @@
     	axisx = new AxisX({
     			props: {
     				gridlines: false,
-    				ticks: /*xticks*/ ctx[4],
-    				format: /*formatLabelX*/ ctx[1],
+    				ticks: /*xticks*/ ctx[7],
+    				format: /*formatLabelX*/ ctx[4],
     				snapLabels: false,
     				tickMarks: true
     			}
@@ -8108,7 +8112,7 @@
     	axisy = new AxisY({
     			props: {
     				ticks: 4,
-    				format: /*formatLabelY*/ ctx[2],
+    				format: /*formatLabelY*/ ctx[5],
     				labelPosition: 'above',
     				tickGutter: 5
     			}
@@ -8164,7 +8168,7 @@
     	};
     }
 
-    // (162:4) <Html>
+    // (167:4) <Html>
     function create_default_slot_1(ctx) {
     	let labels;
     	let t;
@@ -8176,7 +8180,7 @@
     			props: {
     				formatTitle: timeFormat('%b. %e, %Y'),
     				dataset: data,
-    				formatValue: /*formatLabelY*/ ctx[2]
+    				formatValue: /*formatLabelY*/ ctx[5]
     			}
     		});
 
@@ -8212,7 +8216,7 @@
     	};
     }
 
-    // (133:2) <LayerCake     padding={{ top: 20, right: 210, bottom: 20, left: 45 }}     x={xKey}     y={yKey}     z={zKey}     yDomain={[0, null]}     zScale={scaleOrdinal()}     zRange={seriesColors}     flatData={flatten(groupedData, 'values')}     data={groupedData}   >
+    // (138:2) <LayerCake     padding={{ top: 20, right: 210, bottom: 20, left: 45 }}     x={xKey}     y={yKey}     z={zKey}     yDomain={[0, null]}     zScale={scaleOrdinal()}     zRange={seriesColors}     flatData={flatten(groupedData, 'values')}     data={groupedData}   >
     function create_default_slot(ctx) {
     	let svg;
     	let t;
@@ -8248,14 +8252,14 @@
     		p(ctx, dirty) {
     			const svg_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 4096) {
     				svg_changes.$$scope = { dirty, ctx };
     			}
 
     			svg.$set(svg_changes);
     			const html_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 4096) {
     				html_changes.$$scope = { dirty, ctx };
     			}
 
@@ -8280,7 +8284,7 @@
     	};
     }
 
-    // (172:4) {#if source !== 'null'}
+    // (177:4) {#if source !== 'null'}
     function create_if_block_1(ctx) {
     	let div;
 
@@ -8300,7 +8304,7 @@
     	};
     }
 
-    // (175:4) {#if notes !== 'null'}
+    // (180:4) {#if notes !== 'null'}
     function create_if_block(ctx) {
     	let div;
 
@@ -8327,8 +8331,9 @@
     	let t1;
     	let div0;
     	let t2;
+    	let div0_resize_listener;
     	let current;
-    	let if_block0 = create_if_block_2();
+    	let if_block0 = create_if_block_2(ctx);
 
     	layercake = new LayerCake({
     			props: {
@@ -8343,9 +8348,9 @@
     				z: zKey,
     				yDomain: [0, null],
     				zScale: ordinal(),
-    				zRange: /*seriesColors*/ ctx[0],
-    				flatData: flatten(/*groupedData*/ ctx[3], 'values'),
-    				data: /*groupedData*/ ctx[3],
+    				zRange: /*seriesColors*/ ctx[3],
+    				flatData: flatten(/*groupedData*/ ctx[6], 'values'),
+    				data: /*groupedData*/ ctx[6],
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
     			}
@@ -8366,7 +8371,9 @@
     			t2 = space();
     			if (if_block2) if_block2.c();
     			attr(div0, "class", "footnotes svelte-12zwt2s");
+    			add_render_callback(() => /*div0_elementresize_handler*/ ctx[9].call(div0));
     			attr(div1, "class", "chart-container svelte-12zwt2s");
+    			set_style(div1, "margin", /*margin*/ ctx[2].top + "px " + /*margin*/ ctx[2].right + "px " + (/*margin*/ ctx[2].bottom + /*footnote_height*/ ctx[0] + /*title_height*/ ctx[1]) + "px " + /*margin*/ ctx[2].left + "px");
     		},
     		m(target, anchor) {
     			insert(target, div1, anchor);
@@ -8378,19 +8385,24 @@
     			if (if_block1) if_block1.m(div0, null);
     			append(div0, t2);
     			if (if_block2) if_block2.m(div0, null);
+    			div0_resize_listener = add_iframe_resize_listener(div0, /*div0_elementresize_handler*/ ctx[9].bind(div0));
     			current = true;
     		},
     		p(ctx, [dirty]) {
     			if_block0.p(ctx, dirty);
     			const layercake_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 4096) {
     				layercake_changes.$$scope = { dirty, ctx };
     			}
 
     			layercake.$set(layercake_changes);
     			if_block1.p(ctx, dirty);
     			if_block2.p(ctx, dirty);
+
+    			if (!current || dirty & /*footnote_height, title_height*/ 3) {
+    				set_style(div1, "margin", /*margin*/ ctx[2].top + "px " + /*margin*/ ctx[2].right + "px " + (/*margin*/ ctx[2].bottom + /*footnote_height*/ ctx[0] + /*title_height*/ ctx[1]) + "px " + /*margin*/ ctx[2].left + "px");
+    			}
     		},
     		i(local) {
     			if (current) return;
@@ -8407,6 +8419,7 @@
     			destroy_component(layercake);
     			if (if_block1) if_block1.d();
     			if (if_block2) if_block2.d();
+    			div0_resize_listener();
     		}
     	};
     }
@@ -8439,7 +8452,9 @@
     	return datesArray;
     }
 
-    function instance($$self) {
+    function instance($$self, $$props, $$invalidate) {
+    	let footnote_height = 0, title_height = 0;
+    	const margin = { top: 0, right: 0, bottom: 0, left: 0 };
     	const xKeyCast = timeParse('%Y-%m-%d');
     	const seriesNames = Object.keys(data[0]).filter(d => d !== xKey);
 
@@ -8474,7 +8489,28 @@
     	// Call the function to create the dates array
     	const xticks = createDatesArray();
 
-    	return [seriesColors, formatLabelX, formatLabelY, groupedData, xticks];
+    	function h3_elementresize_handler() {
+    		title_height = this.clientHeight;
+    		$$invalidate(1, title_height);
+    	}
+
+    	function div0_elementresize_handler() {
+    		footnote_height = this.clientHeight;
+    		$$invalidate(0, footnote_height);
+    	}
+
+    	return [
+    		footnote_height,
+    		title_height,
+    		margin,
+    		seriesColors,
+    		formatLabelX,
+    		formatLabelY,
+    		groupedData,
+    		xticks,
+    		h3_elementresize_handler,
+    		div0_elementresize_handler
+    	];
     }
 
     class FirstHorizon extends SvelteComponent {
