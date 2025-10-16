@@ -10,6 +10,15 @@
 		((window.__svelte ??= {}).v ??= new Set()).add(PUBLIC_VERSION);
 	}
 
+	let legacy_mode_flag = false;
+	let tracing_mode_flag = false;
+
+	function enable_legacy_mode_flag() {
+		legacy_mode_flag = true;
+	}
+
+	enable_legacy_mode_flag();
+
 	const EACH_ITEM_REACTIVE = 1;
 	const EACH_INDEX_REACTIVE = 1 << 1;
 	const EACH_ITEM_IMMUTABLE = 1 << 4;
@@ -32,6 +41,11 @@
 	var object_prototype = Object.prototype;
 	var array_prototype = Array.prototype;
 	var get_prototype_of = Object.getPrototypeOf;
+
+	/** @param {Function} fn */
+	function run(fn) {
+		return fn();
+	}
 
 	/** @param {Array<() => void>} arr */
 	function run_all(arr) {
@@ -111,6 +125,38 @@
 	}
 
 	/**
+	 * `%rune%` cannot be used inside an effect cleanup function
+	 * @param {string} rune
+	 * @returns {never}
+	 */
+	function effect_in_teardown(rune) {
+		{
+			throw new Error(`https://svelte.dev/e/effect_in_teardown`);
+		}
+	}
+
+	/**
+	 * Effect cannot be created inside a `$derived` value that was not itself created inside an effect
+	 * @returns {never}
+	 */
+	function effect_in_unowned_derived() {
+		{
+			throw new Error(`https://svelte.dev/e/effect_in_unowned_derived`);
+		}
+	}
+
+	/**
+	 * `%rune%` can only be used inside an effect (e.g. during component initialisation)
+	 * @param {string} rune
+	 * @returns {never}
+	 */
+	function effect_orphan(rune) {
+		{
+			throw new Error(`https://svelte.dev/e/effect_orphan`);
+		}
+	}
+
+	/**
 	 * Maximum update depth exceeded. This typically indicates that an effect reads and writes the same piece of state
 	 * @returns {never}
 	 */
@@ -182,8 +228,6 @@
 		return !safe_not_equal(value, this.v);
 	}
 
-	let tracing_mode_flag = false;
-
 	/** @import { ComponentContext, DevStackEntry, Effect } from '#client' */
 
 	/** @type {ComponentContext | null} */
@@ -207,7 +251,7 @@
 			e: null,
 			s: props,
 			x: null,
-			l: null
+			l: legacy_mode_flag && !runes ? { s: null, u: null, $: [] } : null
 		};
 	}
 
@@ -235,7 +279,7 @@
 
 	/** @returns {boolean} */
 	function is_runes() {
-		return true;
+		return !legacy_mode_flag || (component_context !== null && component_context.l === null);
 	}
 
 	/** @type {Array<() => void>} */
@@ -923,7 +967,7 @@
 	 * @param {(values: Value[]) => any} fn
 	 */
 	function flatten(sync, async, fn) {
-		const d = derived ;
+		const d = is_runes() ? derived : derived_safe_equal;
 
 		if (async.length === 0) {
 			fn(sync.map(d));
@@ -1293,6 +1337,12 @@
 			s.equals = safe_equals;
 		}
 
+		// bind the signal to the component context, in case we need to
+		// track updates to trigger beforeUpdate/afterUpdate callbacks
+		if (legacy_mode_flag && trackable && component_context !== null && component_context.l !== null) {
+			(component_context.l.s ??= []).push(s);
+		}
+
 		return s;
 	}
 
@@ -1359,6 +1409,7 @@
 			// properly for itself, we need to ensure the current effect actually gets
 			// scheduled. i.e: `$effect(() => x++)`
 			if (
+				is_runes() &&
 				active_effect !== null &&
 				(active_effect.f & CLEAN) !== 0 &&
 				(active_effect.f & (BRANCH_EFFECT | ROOT_EFFECT)) === 0
@@ -1390,11 +1441,16 @@
 	function mark_reactions(signal, status) {
 		var reactions = signal.reactions;
 		if (reactions === null) return;
+
+		var runes = is_runes();
 		var length = reactions.length;
 
 		for (var i = 0; i < length; i++) {
 			var reaction = reactions[i];
 			var flags = reaction.f;
+
+			// In legacy mode, skip the current effect to prevent infinite loops
+			if (!runes && reaction === active_effect) continue;
 
 			var not_dirty = (flags & DIRTY) === 0;
 
@@ -1799,6 +1855,23 @@
 	/** @import { ComponentContext, ComponentContextLegacy, Derived, Effect, TemplateNode, TransitionManager } from '#client' */
 
 	/**
+	 * @param {'$effect' | '$effect.pre' | '$inspect'} rune
+	 */
+	function validate_effect(rune) {
+		if (active_effect === null && active_reaction === null) {
+			effect_orphan();
+		}
+
+		if (active_reaction !== null && (active_reaction.f & UNOWNED) !== 0 && active_effect === null) {
+			effect_in_unowned_derived();
+		}
+
+		if (is_destroying_effect) {
+			effect_in_teardown();
+		}
+	}
+
+	/**
 	 * @param {Effect} effect
 	 * @param {Effect} parent_effect
 	 */
@@ -1910,10 +1983,42 @@
 	}
 
 	/**
+	 * Internal representation of `$effect(...)`
+	 * @param {() => void | (() => void)} fn
+	 */
+	function user_effect(fn) {
+		validate_effect();
+
+		// Non-nested `$effect(...)` in a component should be deferred
+		// until the component is mounted
+		var flags = /** @type {Effect} */ (active_effect).f;
+		var defer = !active_reaction && (flags & BRANCH_EFFECT) !== 0 && (flags & EFFECT_RAN) === 0;
+
+		if (defer) {
+			// Top-level `$effect(...)` in an unmounted component — defer until mount
+			var context = /** @type {ComponentContext} */ (component_context);
+			(context.e ??= []).push(fn);
+		} else {
+			// Everything else — create immediately
+			return create_user_effect(fn);
+		}
+	}
+
+	/**
 	 * @param {() => void | (() => void)} fn
 	 */
 	function create_user_effect(fn) {
 		return create_effect(EFFECT | USER_EFFECT, fn, false);
+	}
+
+	/**
+	 * Internal representation of `$effect.pre(...)`
+	 * @param {() => void | (() => void)} fn
+	 * @returns {Effect}
+	 */
+	function user_pre_effect(fn) {
+		validate_effect();
+		return create_effect(RENDER_EFFECT | USER_EFFECT, fn, true);
 	}
 
 	/**
@@ -2823,6 +2928,80 @@
 		signal.f = (signal.f & STATUS_MASK) | status;
 	}
 
+	/**
+	 * Possibly traverse an object and read all its properties so that they're all reactive in case this is `$state`.
+	 * Does only check first level of an object for performance reasons (heuristic should be good for 99% of all cases).
+	 * @param {any} value
+	 * @returns {void}
+	 */
+	function deep_read_state(value) {
+		if (typeof value !== 'object' || !value || value instanceof EventTarget) {
+			return;
+		}
+
+		if (STATE_SYMBOL in value) {
+			deep_read(value);
+		} else if (!Array.isArray(value)) {
+			for (let key in value) {
+				const prop = value[key];
+				if (typeof prop === 'object' && prop && STATE_SYMBOL in prop) {
+					deep_read(prop);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Deeply traverse an object and read all its properties
+	 * so that they're all reactive in case this is `$state`
+	 * @param {any} value
+	 * @param {Set<any>} visited
+	 * @returns {void}
+	 */
+	function deep_read(value, visited = new Set()) {
+		if (
+			typeof value === 'object' &&
+			value !== null &&
+			// We don't want to traverse DOM elements
+			!(value instanceof EventTarget) &&
+			!visited.has(value)
+		) {
+			visited.add(value);
+			// When working with a possible SvelteDate, this
+			// will ensure we capture changes to it.
+			if (value instanceof Date) {
+				value.getTime();
+			}
+			for (let key in value) {
+				try {
+					deep_read(value[key], visited);
+				} catch (e) {
+					// continue
+				}
+			}
+			const proto = get_prototype_of(value);
+			if (
+				proto !== Object.prototype &&
+				proto !== Array.prototype &&
+				proto !== Map.prototype &&
+				proto !== Set.prototype &&
+				proto !== Date.prototype
+			) {
+				const descriptors = get_descriptors(proto);
+				for (let key in descriptors) {
+					const get = descriptors[key].get;
+					if (get) {
+						try {
+							get.call(value);
+						} catch (e) {
+							// continue
+						}
+					}
+				}
+			}
+		}
+	}
+
 	/** @param {string} html */
 	function create_fragment_from_html(html) {
 		var elem = document.createElement('template');
@@ -3674,6 +3853,84 @@
 		});
 	}
 
+	/** @import { ComponentContextLegacy } from '#client' */
+
+	/**
+	 * Legacy-mode only: Call `onMount` callbacks and set up `beforeUpdate`/`afterUpdate` effects
+	 * @param {boolean} [immutable]
+	 */
+	function init(immutable = false) {
+		const context = /** @type {ComponentContextLegacy} */ (component_context);
+
+		const callbacks = context.l.u;
+		if (!callbacks) return;
+
+		let props = () => deep_read_state(context.s);
+
+		if (immutable) {
+			let version = 0;
+			let prev = /** @type {Record<string, any>} */ ({});
+
+			// In legacy immutable mode, before/afterUpdate only fire if the object identity of a prop changes
+			const d = derived(() => {
+				let changed = false;
+				const props = context.s;
+				for (const key in props) {
+					if (props[key] !== prev[key]) {
+						prev[key] = props[key];
+						changed = true;
+					}
+				}
+				if (changed) version++;
+				return version;
+			});
+
+			props = () => get(d);
+		}
+
+		// beforeUpdate
+		if (callbacks.b.length) {
+			user_pre_effect(() => {
+				observe_all(context, props);
+				run_all(callbacks.b);
+			});
+		}
+
+		// onMount (must run before afterUpdate)
+		user_effect(() => {
+			const fns = untrack(() => callbacks.m.map(run));
+			return () => {
+				for (const fn of fns) {
+					if (typeof fn === 'function') {
+						fn();
+					}
+				}
+			};
+		});
+
+		// afterUpdate
+		if (callbacks.a.length) {
+			user_effect(() => {
+				observe_all(context, props);
+				run_all(callbacks.a);
+			});
+		}
+	}
+
+	/**
+	 * Invoke the getter of all signals associated with a component
+	 * so they can be registered to the effect this function is called in.
+	 * @param {ComponentContextLegacy} context
+	 * @param {(() => void)} props
+	 */
+	function observe_all(context, props) {
+		if (context.l.s) {
+			for (const signal of context.l.s) get(signal);
+		}
+
+		props();
+	}
+
 	function formatDecimal(x) {
 	  return Math.abs(x = Math.round(x)) >= 1e21
 	      ? x.toLocaleString("en").replace(/,/g, "")
@@ -3996,10 +4253,10 @@
 	};
 
 	function SquareChart($$anchor, $$props) {
-		push($$props, true);
+		push($$props, false);
 		append_styles($$anchor, $$css);
 
-		let width = state(720);
+		let width = mutable_source(720);
 
 		const data = [
 			{
@@ -4038,9 +4295,12 @@
 
 		const max_value = Math.max(...data.map((x) => x['value']));
 		const data_format = (d) => format(`$.3~s`)(d).replace("G", "B");
+
+		init();
+
 		var div = root();
 
-		each(div, 21, () => data, index, ($$anchor, d) => {
+		each(div, 5, () => data, index, ($$anchor, d) => {
 			var div_1 = root_1();
 			var div_2 = child(div_1);
 			var text = sibling(child(div_2));
